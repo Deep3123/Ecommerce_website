@@ -50,11 +50,11 @@ def signup(request):
             email = form.cleaned_data['email']
             if User.objects.filter(username=username).exists():
                 # Username already exists
-                messages.error(request, 'Username already exists. Please choose a different username.')
+                form.add_error('username', 'Username already exists. Please choose a different username.')
                 return render(request, 'registration/signup.html', {'form': form})
             if User.objects.filter(email=email).exists():
                 # Email already exists
-                messages.error(request, 'Email already registered. Please use a different email address.')
+                form.add_error('email', 'Email already registered. Please use a different email address.')
                 return render(request, 'registration/signup.html', {'form': form})
             
             # Continue with signup process if no duplicate username or email
@@ -85,6 +85,7 @@ def signup(request):
             return redirect('index')
 
     return render(request, 'registration/signup.html', context)
+
 
 
 @login_required(login_url="/accounts/login/")

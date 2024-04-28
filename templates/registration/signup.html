@@ -16,10 +16,8 @@
                     <span style="margin-left:80px">Already Have an Account?&nbsp;<a
                             href="{% url 'login' %}">Login</a></span>
                 </form>
-                {% if messages %}
-                {% for message in messages %}
-                <div class="alert alert-danger" role="alert">{{ message }}</div>
-                {% endfor %}
+                {% if form.non_field_errors %}
+                <div class="alert alert-danger" role="alert">{{ form.non_field_errors }}</div>
                 {% endif %}
             </div>
         </div>

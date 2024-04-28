@@ -62,11 +62,26 @@ class UserCreateForm(UserCreationForm):
             user.save()
         return user
     
+    ## INBUILT FUNCTION:
+    # def clean_email(self):
+    #     email = self.cleaned_data.get('email')
+    #     if User.objects.filter(email=email).exists():
+    #         raise forms.ValidationError(self.fields['email'].error_message['exists!'])
+    #     return self.cleaned_data['email']
+    
+    
+    ## USER DEFINED FUNCTION IMPLEMENTED BY ME:
     def clean_email(self):
         email = self.cleaned_data.get('email')
         if User.objects.filter(email=email).exists():
-            raise forms.ValidationError(self.fields['email'].error_message['exists!'])
-        return self.cleaned_data['email']
+            raise forms.ValidationError('This email address is already in use. Please use a different email address.')
+        return email
+
+    def clean_username(self):
+        username = self.cleaned_data.get('username')
+        if User.objects.filter(username=username).exists():
+            raise forms.ValidationError('This username is already taken. Please choose a different username.')
+        return username
     
 class Contact_us(models.Model):
     name = models.CharField(max_length=100)
