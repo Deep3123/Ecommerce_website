@@ -34,9 +34,11 @@ urlpatterns = [
     path('search/', views.Search, name='search'),
     # path('account/', views.Account, name='account'),
     path('faq/', views.faq_list, name='faq_list'),
-    path('checkout/error.html', views.error, name='checkout'),    
+    path('checkout/error', views.error, name='error'),    
     path('policies/', views.Policy, name='policy'),    
-    path('info/', views.Info, name='info'),    
+    path('info/', views.Info, name='info'),
+    path('cart/item_decrement/1/', views.error, name='error2'),
+        
     
     path('cart/add/<int:id>/', views.cart_add, name='cart_add'),
     path('cart/item_clear/<int:id>/', views.item_clear, name='item_clear'),

@@ -53,29 +53,24 @@ def signup(request):
             new_user = authenticate(
                 username=form.cleaned_data['username'], 
                 password=form.cleaned_data['password1'],
-            )
+                )
             login(request, new_user)
             return redirect('index')
+        
     else:
         form = UserCreateForm()
-
+            
     context = {
-        'form': form,
+       'form': form,
     }
-
-    # Check if user is already authenticated
-    if request.user.is_authenticated:
-        return redirect('index')  # Redirect to index if user is already authenticated
-
-    # Attempt to retrieve user ID from session
-    user_id = request.session.get('user_id')
-    if user_id:
-        user = authenticate(request, user_id=user_id)
-        if user is not None:
-            login(request, user)
-            return redirect('index')
-
-    return render(request, 'registration/signup.html', context)
+    
+    email = request.POST.get('about')
+    about = About(
+                email = email,
+                )
+    about.save()
+    
+    return render(request,'registration/signup.html', context)
 
 @login_required(login_url="/accounts/login/")
 def cart_add(request, id):
@@ -118,6 +113,11 @@ def cart_clear(request):
 
 @login_required(login_url="/accounts/login/")
 def cart_detail(request):
+    quantity = request.GET.get('cart_quantity_down')
+    
+    if(quantity<1):
+        return redirect('error')
+    
     return render(request, 'cart/cart_detail.html')
 
 
@@ -182,7 +182,7 @@ def Checkout(request):
         order_amount = sum(int(item['price']) * int(item['quantity']) for item in cart.values()) * 100  # Convert to paise
 
         if(order_amount < 1):
-            return redirect('error.html')
+            return redirect('error')
         # Create a Razorpay order
         order_currency = 'INR'
         order_receipt = 'order_rcptid_11'  # You may want to generate a unique receipt ID
