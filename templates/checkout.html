@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        label {
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Confirm Your Checkout</h1>
+        <form action="/your-callback-url/" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name">Are you sure you want to proceed with the payment?</label><br><br>
+                <button type="submit">Pay Now</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Include Razorpay checkout script -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+        var options = {
+            "key": "rzp_test_pIqGo2X8aqQ6ja",
+            "amount": "{{ order_amount }}", // Amount in paise
+            "currency": "INR",
+            "name": "E-shopper",
+            "description": "Thank you for buying!",
+            "order_id": "{{ order_id }}",
+            "handler": function(response) {
+                // Handle the response from Razorpay backend
+                console.log(response);
+
+                // Check if payment was successful
+                if (response.razorpay_payment_id) {
+                    // Payment was successful, redirect to home page
+                    window.location.href = '/';
+                }
+            },
+            "prefill": {
+                "name": "",
+                "email": "",
+                "contact": ""
+            },
+            "theme": {
+                "color": "#007bff"
+            }
+        };
+        var rzp = new Razorpay(options);
+        document.querySelector("form").addEventListener("submit", function(e) {
+            e.preventDefault();
+            rzp.open();
+        });
+    </script>
+</body>
+
+</html>

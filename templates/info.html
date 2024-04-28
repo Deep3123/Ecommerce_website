@@ -1,0 +1,99 @@
+{% extends "master.html" %}
+
+{% block body %}
+<style>
+    .policy {
+        margin: 0 auto;
+        /* Center the container horizontally */
+        max-width: 800px;
+        /* Limit the maximum width of the container */
+        padding: 20px;
+        /* Add some padding for spacing */
+        text-align: left;
+        /* Align the text to the left */
+    }
+
+    .policy h1 {
+        text-align: center;
+
+        /* Center the headings */
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    p {
+        margin-bottom: 10px;
+        line-height: 1.6;
+    }
+
+    .policy {
+        margin-bottom: 40px;
+    }
+
+    .policy h1 {
+        color: #FE980F;
+    }
+
+    .fa {
+        margin-right: 5px;
+    }
+
+    .fa-hand-o-right {
+        color: #FE980F;
+    }
+
+    .policy-title {
+        font-family: abel;
+        font-weight: bold;
+    }
+
+    .searchform button {
+        background: #FE980F;
+        border: medium none;
+        border-radius: 0;
+        margin-left: -10px;
+        margin-top: -3px;
+        padding: 7px 17px;
+    }
+</style>
+
+<div class="container">
+    <div class="policy">
+        <h1 class="policy-title">Company Information</h1>
+        <hr>
+        <p><i class="fa fa-hand-o-right" aria-hidden="true"></i> ShopGenius is an innovative ecommerce platform dedicated
+            to providing the best shopping experience for our customers. With a wide range of products from various
+            categories, we aim to make shopping convenient, enjoyable, and rewarding.</p>
+        <p><i class="fa fa-hand-o-right" aria-hidden="true"></i> Our mission is to revolutionize the online shopping
+            experience by offering high-quality products, exceptional customer service, and a seamless shopping journey
+            from start to finish.</p>
+        <p><i class="fa fa-hand-o-right" aria-hidden="true"></i> At ShopGenius, we value our customers and strive to
+            exceed their expectations. We are committed to continuous improvement and innovation to ensure that our
+            customers always have access to the latest trends and best deals.</p>
+        <p><i class="fa fa-hand-o-right" aria-hidden="true"></i> For any inquiries or feedback, please don't hesitate to
+            contact us. Your satisfaction is our top priority.</p>
+    </div>
+    
+
+    <div class="policy" style="text-align:center;">
+        <h1 class="policy-title">Store Location</h1>
+        <hr>
+        <address>
+            <p>Shop-Genius Inc.</p>
+            <p>1, 136, Dr E Moses Rd, Gandhi Nagar, Upper Worli, Worli</p>
+            <p>Mumbai, Maharashtra 400018, India</p>
+            <p>Mobile: +91 9501888201</p>
+            <p>Email: info@Shop-Genius.com</p>
+        </address>
+    </div>
+
+    <div class="policy" style="text-align:center;">
+        <h1 class="policy-title">Copyright</h1>
+        <hr>
+        <p>Copyright © 2023 ShopGenius Inc. All rights reserved.</p>
+    </div>
+</div>
+{% endblock body %}

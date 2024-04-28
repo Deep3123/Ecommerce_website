@@ -1,0 +1,50 @@
+{% extends "master.html" %}
+
+{% block body %}
+<h1 style="display: flex; justify-content: center; font-family: abel; font-weight: bold;">FAQ List</h1>
+<div class="faq">
+    <ul>
+        {% for faq in faqs %}
+        <li>
+            <div class="faq-question" style="border: 1px solid rgb(237, 236, 236); padding: 5px; margin-bottom: 10px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); display: flex; justify-content: space-between; align-items: center;">
+                <div style="flex: 1; margin-left:15px;">
+                    <h2 class="faq-que">{{ faq.question }}</h2>
+                </div>
+                <div style="margin-left: 20px; margin-right:15px;">
+                    <button class="faq-toggle" style="background-color: #eeeeee; border: 0.5px solid rgb(205, 204, 204); padding: 5px 10px;"><i class="fa fa-caret-down"></i></button>
+                </div>
+                <br>
+            </div>
+            <p class="faq-answer" style="display: none; margin-bottom: 20px;">{{ faq.answer }}</p>
+        </li>
+        {% empty %}
+        <li>No FAQs found.</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const faqToggles = document.querySelectorAll('.faq-toggle');
+
+        faqToggles.forEach(function (toggle) {
+            toggle.addEventListener('click', function () {
+                const faqItem = this.parentElement.parentElement.parentElement; // Adjusted parentElement to target the correct element
+                const answer = faqItem.querySelector('.faq-answer');
+
+                // Close all other answers
+                const allAnswers = document.querySelectorAll('.faq-answer');
+                allAnswers.forEach(function (a) {
+                    if (a !== answer) {
+                        a.style.display = 'none';
+                    }
+                });
+
+                // Toggle current answer
+                answer.style.display = (answer.style.display === 'none' || answer.style.display === '') ? 'block' : 'none';
+            });
+        });
+    });
+
+</script>
+{% endblock body %}
