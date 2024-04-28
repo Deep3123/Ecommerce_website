@@ -162,3 +162,9 @@ RAZORPAY_KEY_SECRET = "0YQOZh0MSElWcGefI3EiNU2b"
 # LOCALE_PATHS = [
 #     os.path.join(BASE_DIR, 'locale'),
 # ]
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+
+SESSION_COOKIE_AGE = 60 * 60 * 24 * 7  # 1 week (in seconds)
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
