@@ -37,8 +37,7 @@ urlpatterns = [
     path('checkout/error', views.error, name='error'),    
     path('policies/', views.Policy, name='policy'),    
     path('info/', views.Info, name='info'),
-    path('cart/item_decrement/<str:id>/', views.error, name='error2'),
-        
+    path('cart/item_decrement/<str:id>/', views.cart_detail, name='item_decrement'),
     
     path('cart/add/<int:id>/', views.cart_add, name='cart_add'),
     path('cart/item_clear/<int:id>/', views.item_clear, name='item_clear'),

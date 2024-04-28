@@ -6,6 +6,7 @@ from cart.cart import Cart
 from django.contrib.auth.models import User
 import razorpay
 from django.conf import settings
+from django.contrib import messages
 # Create your views here.
 
 def Master(request):
@@ -45,9 +46,21 @@ def signup(request):
     if request.method == 'POST':
         form = UserCreateForm(request.POST)
         if form.is_valid():
+            username = form.cleaned_data['username']
+            email = form.cleaned_data['email']
+            if User.objects.filter(username=username).exists():
+                # Username already exists
+                messages.error(request, 'Username already exists. Please choose a different username.')
+                return render(request, 'registration/signup.html', {'form': form})
+            if User.objects.filter(email=email).exists():
+                # Email already exists
+                messages.error(request, 'Email already registered. Please use a different email address.')
+                return render(request, 'registration/signup.html', {'form': form})
+            
+            # Continue with signup process if no duplicate username or email
             new_user = form.save()
             new_user = authenticate(
-                username=form.cleaned_data['username'], 
+                username=username,
                 password=form.cleaned_data['password1'],
             )
             login(request, new_user)
@@ -72,6 +85,7 @@ def signup(request):
             return redirect('index')
 
     return render(request, 'registration/signup.html', context)
+
 
 @login_required(login_url="/accounts/login/")
 def cart_add(request, id):
