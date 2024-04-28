@@ -422,8 +422,8 @@
     <script>
         function showAboutAlert(event) {
             event.preventDefault(); // Prevent the form from submitting
-            alert('Thank you for subscribing to ShopGenius updates!'); // Show the alert
             window.location.href = "{% url 'index' %}";
+            alert('Thank you for subscribing to ShopGenius updates!'); // Show the alert
             // You can add code here to submit the form using AJAX or perform any other action
         }
         </script>
