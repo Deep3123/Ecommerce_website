@@ -38,11 +38,16 @@
                         </td>
                         <td class="cart_quantity">
                             <div class="cart_quantity_button">
-                                <a class="cart_quantity_up" href="{% url 'item_increment' value.product_id %}" name="cart_quantity_up"> + </a>
+                                <a class="cart_quantity_up"
+                                    href="{% url 'item_increment' value.product_id %}?quantity={{ value.quantity|add:1 }}"
+                                    name="cart_quantity_up"> + </a>
                                 <input class="cart_quantity_input" type="text" name="quantity"
-                                    value="{{value.quantity}}" autocomplete="off" size="2" min="1">
-                                <a class="cart_quantity_down" href="{% url 'item_decrement' value.product_id %}" name="cart_quantity_down"> - </a>
+                                    value="{{ value.quantity }}" autocomplete="off" size="2" min="1">
+                                <a class="cart_quantity_down"
+                                    href="{% url 'item_decrement' value.product_id %}?quantity={{ max(value.quantity - 1, 1) }}"
+                                    name="cart_quantity_down"> - </a>
                             </div>
+
                         </td>
                         <td class="cart_total">
                             <p class="cart_total_price">₹ {{ value.price|multiply:value.quantity }}
@@ -73,8 +78,8 @@
         <a href="{% url 'cart_clear' %}"
             style="font-size: 14px;padding: 6px 12px;color:rgb(255, 255, 255);background-color:rgb(232, 33, 33);border-radius: 4px;float:left;">Clear
             Cart</a>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
-            data-whatever="@mdo" style="float: right;border-radius: 4px;" id="checkout-button">Checkout</button>    
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+            data-whatever="@mdo" style="float: right;border-radius: 4px;" id="checkout-button">Checkout</button>
     </div>
 </section> <!--/#cart_items-->
 <br>
