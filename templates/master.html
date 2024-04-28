@@ -383,16 +383,14 @@
                     <div class="col-sm-3 col-sm-offset-1">
                         <div class="single-widget">
                             <h2>About ShopGenius</h2>
-                            <form action="{% url 'index' %}" method="post" class="searchform">
+                            <form id="about-form" action="{% url 'index' %}" method="post" class="searchform" onsubmit="showAboutAlert(event)">
                                 {% csrf_token %}
-                                <input type="text" placeholder="Your email address" name="about" required />
-                                <button type="submit" class="btn btn-default"><i
-                                        class="fa fa-arrow-circle-o-right"></i></button>
-                                <p>Get the most recent updates from <br />our site and be updated your self...</p>
+                                <input type="email" placeholder="Your email address" name="about" required />
+                                <button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
+                                <p>Get the most recent updates from <br />our site and be updated yourself...</p>
                             </form>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -420,6 +418,14 @@
             element.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     </script>
+       
+    <script>
+        function showAboutAlert(event) {
+            event.preventDefault(); // Prevent the form from submitting
+            alert('Thank you for subscribing to ShopGenius updates!'); // Show the alert
+            // You can add code here to submit the form using AJAX or perform any other action
+        }
+        </script>
 </body>
 
 </html>
