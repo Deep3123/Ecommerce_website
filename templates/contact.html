@@ -77,6 +77,7 @@
     function showAlert(event) {
         event.preventDefault(); // Prevent the form from submitting
         alert('Thank you for your message! We will get back to you soon.'); // Show the alert
+        window.location.href = "{% url 'contact_page' %}";
         // You can add code here to submit the form using AJAX or perform any other action
     }
 </script>
