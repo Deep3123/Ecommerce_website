@@ -40,10 +40,6 @@ def Index(request):
     about.save()
     return render(request,'index.html', context)
 
-from django.contrib.auth import authenticate, login
-from django.shortcuts import render, redirect
-from .forms import UserCreateForm
-from .models import About
 
 def signup(request):
     if request.method == 'POST':
@@ -66,8 +62,8 @@ def signup(request):
     
     email = request.POST.get('about')
     about = About(
-                email = email,
-                )
+            email = email,
+            )
     about.save()
     
     return render(request,'registration/signup.html', context)
