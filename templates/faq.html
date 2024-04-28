@@ -1,7 +1,14 @@
 {% extends "master.html" %}
-
+<style>
+    .faq-h1{
+        font-family: "Abel", sans-serif;
+        display: flex; 
+        justify-content: center; 
+        font-weight: bold;
+    }
+</style>
 {% block body %}
-<h1 style="display: flex; justify-content: center; font-family: abel; font-weight: bold;">FAQ List</h1>
+<h1 class="faq-h1">FAQ List</h1>
 <div class="faq">
     <ul>
         {% for faq in faqs %}
