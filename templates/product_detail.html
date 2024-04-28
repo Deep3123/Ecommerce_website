@@ -11,11 +11,22 @@
     });
 </script>
 <script>
-    function showAboutAlert(event) {
+    function showAboutAlert(event, productId) {
         event.preventDefault(); // Prevent the form from submitting
-        window.location.href = "{% url 'product_detail' %}";
-        alert('Your Review has been submitted successfully!'); // Show the alert
-        // You can add code here to submit the form using AJAX or perform any other action
+        // Submit the form using AJAX
+        $.ajax({
+            type: 'POST',
+            url: '{% url "product_detail" id=0 %}'.replace('0', productId),
+            data: $('#main-contact-form').serialize(),
+            success: function (response) {
+                alert('Your Review has been submitted successfully!');
+                window.location.href = response.redirect_url;
+            },
+            error: function (xhr, status, error) {
+                alert('An error occurred while submitting the form.');
+                console.error(xhr.responseText);
+            }
+        });
     }
 </script>
 
@@ -320,7 +331,7 @@
                                     versatile product.</p>
                                 <p><b>Write Your Review</b></p>
                                 <form id="main-contact-form" class="contact-form row" name="contact-form" method="post"
-                                    onsubmit="showAboutAlert(event)">
+                                    onsubmit="showAboutAlert(event, {{product.id}})">
                                     {% csrf_token %}
                                     <span>
                                         <input name="name" type="text" placeholder="Your Name" required />
@@ -328,10 +339,6 @@
                                         <textarea name="comment" required
                                             placeholder="Write Your Review Here."></textarea>
                                     </span>
-                                    <!-- <b>Rating: </b> <img src="/static/images/product-details/rating.png" alt="" /> -->
-                                    <!-- <button type="button" class="btn btn-default pull-right">
-                                        Submit
-                                    </button> -->
                                     <div class="form-group col-md-12">
                                         <input type="submit" name="submit" class="btn btn-primary pull-right"
                                             value="Submit">
