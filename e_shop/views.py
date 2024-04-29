@@ -129,7 +129,6 @@ def item_decrement(request, id):
     return redirect("cart_detail")
 
 
-
 @login_required(login_url="/accounts/login/")
 def cart_clear(request):
     cart = Cart(request)
