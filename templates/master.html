@@ -102,6 +102,10 @@
             font-family: "Abel", sans-serif;
             font-size: medium;
         }
+
+        .yt :hover{
+            background-color: rgb(174, 19, 19);
+        }
     </style>
 </head><!--/head-->
 
@@ -128,7 +132,7 @@
                                         target="_blank"><i class="fa fa-linkedin"></i></a></li>
                                 <!-- <li><a href="#"><i class="fa fa-dribbble"></i></a></li> -->
                                 <li><a href="https://youtube.com/@DEEPPATEL-jb2cw?si=rwwVZK-ekF3sxglW"
-                                        target="_blank"><i class="fa fa-youtube"></i></a></li>
+                                        target="_blank" class="yt"><i class="fa fa-youtube"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -421,7 +425,7 @@
        
     <script>
         function showAboutAlert(event) {
-            event.preventDefault(); // Prevent the form from submitting
+            // event.preventDefault(); // Prevent the form from submitting
             window.location.href = "{% url 'index' %}";
             alert('Thank you for subscribing to ShopGenius updates!'); // Show the alert
             // You can add code here to submit the form using AJAX or perform any other action

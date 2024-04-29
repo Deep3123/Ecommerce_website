@@ -139,6 +139,12 @@ def cart_clear(request):
 
 @login_required(login_url="/accounts/login/")
 def cart_detail(request):
+    with transaction.atomic():    
+        about_email = request.POST.get('about')
+        if about_email:
+            about = About(email=about_email)
+            about.save()
+            
     return render(request, 'cart/cart_detail.html')
 
 def Contact_page(request):
