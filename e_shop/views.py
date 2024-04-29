@@ -116,6 +116,11 @@ def item_increment(request, id):
 def item_decrement(request, id):
     cart = Cart(request)
     product = Product.objects.get(id=id)
+    quantity = request.GET.get('cart_quantity_down')
+    
+    if quantity is not None and int(quantity) < 1:
+        return redirect('error')
+    
     cart.decrement(product=product)
     return redirect("cart_detail")
 
@@ -129,11 +134,6 @@ def cart_clear(request):
 
 @login_required(login_url="/accounts/login/")
 def cart_detail(request):
-    quantity = request.GET.get('cart_quantity_down')
-    
-    if quantity is not None and int(quantity) < 1:
-        return redirect('error')
-    
     return render(request, 'cart/cart_detail.html')
 
 
