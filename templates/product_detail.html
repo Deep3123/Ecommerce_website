@@ -21,7 +21,8 @@
             success: function (response) {
                 alert('Your Review has been submitted successfully!');
                 $('#main-contact-form')[0].reset();
-                window.location.href = window.location.href; // Redirect to the current page
+                window.location.href = window.location.href; 
+               // location.reload();
             },
             error: function (xhr, status, error) {
                 alert('An error occurred while submitting the form.');

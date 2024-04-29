@@ -37,11 +37,12 @@ def Index(request):
         'product': product,
         'brand': brand,
     }
-    email = request.POST.get('about')
-    about = About(
-                email=email,
-            )
-    about.save()
+    
+    about_email = request.POST.get('about')
+    if about_email:
+        about = About(email=about_email)
+        about.save()
+        
     return render(request, 'index.html', context)
 
 
@@ -140,7 +141,6 @@ def cart_clear(request):
 def cart_detail(request):
     return render(request, 'cart/cart_detail.html')
 
-
 def Contact_page(request):
     if request.method == 'POST':
         with transaction.atomic():
@@ -151,12 +151,12 @@ def Contact_page(request):
                 message=request.POST.get('message'),
             )
             contact.save()
-        
-    email = request.POST.get('about')
-    about = About(
-                email=email,
-            )
-    about.save()
+            # Assuming you have a field named 'about' in your form
+            about_email = request.POST.get('about')
+            if about_email:
+                about = About(email=about_email)
+                about.save()
+    
     return render(request, 'contact.html')
 
 
@@ -187,11 +187,10 @@ def Checkout(request):
                 )
                 order.save()
             
-        email = request.POST.get('about')
-        about = About(
-                email=email,
-            )
-        about.save()
+            about_email = request.POST.get('about')
+            if about_email:
+                about = About(email=about_email)
+                about.save()
     
         client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
 
@@ -221,11 +220,10 @@ def Your_Order(request):
     with transaction.atomic():
         order = Order.objects.filter(user=user)
     
-        email = request.POST.get('about')
-        about = About(
-                    email=email,
-                )
-        about.save()
+        about_email = request.POST.get('about')
+        if about_email:
+            about = About(email=about_email)
+            about.save()
     
         context = {
             'order': order
@@ -247,11 +245,10 @@ def Product_page(request):
     else:
         product = Product.objects.all()
         
-    email = request.POST.get('about')
-    about = About(
-                email=email,
-            )
-    about.save()
+    about_email = request.POST.get('about')
+    if about_email:
+        about = About(email=about_email)
+        about.save()
         
     context = {
         'category': category,
@@ -296,11 +293,10 @@ def Product_detail(request, id):
             )
             review.save()
 
-    email = request.POST.get('about')
-    about = About(
-            email=email,
-        )
-    about.save()
+            about_email = request.POST.get('about')
+            if about_email:
+                about = About(email=about_email)
+                about.save()
     
     return render(request, 'product_detail.html', context)
 
@@ -317,11 +313,10 @@ def faq_list(request):
     with transaction.atomic():
         faqs = FAQ.objects.all()
     
-        email = request.POST.get('about')
-        about = About(
-                    email=email,
-                )
-        about.save()
+        about_email = request.POST.get('about')
+        if about_email:
+            about = About(email=about_email)
+            about.save()
     
     return render(request, 'faq.html', {'faqs': faqs})
 
