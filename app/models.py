@@ -112,8 +112,8 @@ class Review(models.Model):
     email = models.EmailField(max_length=100, null=True)
     comment = models.TextField()
     
-    def __str__(self) -> str:
-        return self.name 
+    def __str__(self):
+        return f"{self.id} - {self.name}" 
 
 class FAQ(models.Model):
     question = models.CharField(max_length=255)
@@ -131,5 +131,5 @@ class About(models.Model):
     email = models.EmailField(max_length=255, null=True)
     date_subscribed = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self) -> str:
-        return self.email 
+    def __str__(self):
+        return f"{self.id} - {self.email}" 

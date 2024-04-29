@@ -11,7 +11,7 @@
     });
 </script>
 <script>
-    function showAboutAlert(event, productId) {
+    function showAboutReview(event, productId) {
         event.preventDefault(); // Prevent the form from submitting
         // Submit the form using AJAX
         $.ajax({
@@ -29,7 +29,6 @@
         });
     }
 </script>
-
 <section>
     <div class="container">
         <div class="row">
@@ -331,7 +330,7 @@
                                     versatile product.</p>
                                 <p><b>Write Your Review</b></p>
                                 <form id="main-contact-form" class="contact-form row" name="contact-form" method="post"
-                                    onsubmit="showAboutAlert(event, {{product.id}})">
+                                    onsubmit="showAboutReview(event, {{product.id}})">
                                     {% csrf_token %}
                                     <span>
                                         <input name="name" type="text" placeholder="Your Name" required />
