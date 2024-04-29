@@ -20,6 +20,7 @@
             data: $('#main-contact-form').serialize(),
             success: function (response) {
                 alert('Your Review has been submitted successfully!');
+                $('#main-contact-form')[0].reset();
                 window.location.href = window.location.href; // Redirect to the current page
             },
             error: function (xhr, status, error) {
