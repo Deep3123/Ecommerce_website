@@ -110,20 +110,21 @@
                     {% csrf_token %}
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Phone:</label>
-                        <input type="text" name="phone" class="form-control" id="recipient-name" required>
+                        <input type="text" name="phone" class="form-control" id="phone" pattern="\d{10}" title="Phone number must be numeric with 10 digits" required>
                     </div>
                     <div class="form-group">
                         <label for="message-text" class="col-form-label">Address:</label>
-                        <textarea class="form-control" name="address" id="message-text"></textarea required>
+                        <textarea class="form-control" name="address" id="address" required></textarea>
                     </div>
                     <div class="form-group">
                         <label for="message-text" class="col-form-label">Pincode:</label>
-                        <input type="text" name="pincode" class="form-control" id="pincode" required>
+                        <input type="text" name="pincode" class="form-control" id="pincode" pattern="\d{6}" title="Pincode must be numeric with 6 digits" required>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary" style="border-radius: 4px;">Checkout</button>
                     </div>
                 </form>
+                
             </div>
         </div>
     </div>
