@@ -218,7 +218,7 @@ def Checkout(request):
         
     return HttpResponse("This is a checkout page !!")
 
-
+@login_required
 def Your_Order(request):
     uid = request.session.get('_auth_user_id')
     user = User.objects.get(pk=uid)
