@@ -11,9 +11,10 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 import os
+from urllib.parse import quote_plus
 import dj_database_url
 from pathlib import Path
-
+import urllib
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -31,7 +32,7 @@ SECRET_KEY = 'django-insecure-f9trs3#pg^&uyucvjp^jm(dlb+_2_)sd3w+jv*p)-l!lp+nw@2
 # DEBUG = os.environ.get('DEBUG', 'True') == "True"
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'shop-genius.onrender.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'shop-genius.onrender.com', '.vercel.app']
 
 
 # Application definition
@@ -89,6 +90,28 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'djongo',
+#         'NAME': 'E-commerce',
+#         'CLIENT': {
+#             'host' : "mongodb+srv://deep:deep1234@cluster0.dxtduum.mongodb.net/E-commerce?retryWrites=true&w=majority",
+#         },   
+#     }
+# }
+
+# DATABASES = {
+# "default": {
+#     "ENGINE": "djongo",
+#     "Name": "E-commerce",
+#     "CLIENT": {
+#         "host": "mongodb+srv://deep:deep1234@cluster0.dxtduum.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+#         "username": "deep",
+#         "password": "deep1234",
+#     },
+#   }
+# }
 
 
 # DATABASES = {
