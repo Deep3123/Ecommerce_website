@@ -15,6 +15,8 @@ from urllib.parse import quote_plus
 import dj_database_url
 from pathlib import Path
 import urllib
+
+import psycopg2
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -32,7 +34,7 @@ SECRET_KEY = 'django-insecure-f9trs3#pg^&uyucvjp^jm(dlb+_2_)sd3w+jv*p)-l!lp+nw@2
 # DEBUG = os.environ.get('DEBUG', 'True') == "True"
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'shop-genius.onrender.com', '.vercel.app']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'shop-genius.onrender.com', '.vercel.app', 'shopgenius.azurewebsites.net']
 
 
 # Application definition
@@ -84,12 +86,12 @@ WSGI_APPLICATION = 'e_shop.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 # DATABASES = {
 #     'default': {
@@ -138,7 +140,28 @@ DATABASES = {
 #     }
 # }
     
-    
+   
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'E-Commerce',
+#         'USER': 'postgres',
+#         'PASSWORD': 'root',
+#         'HOST': '',
+#         'PORT': '',
+#     }
+# } 
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'E-Commerce',  # Replace with your database name
+        'USER': 'dbadmin',    # Replace with your database username
+        'PASSWORD': 'root@1234',  # Replace with your database password
+        'HOST': 'ecommerce-database2.postgres.database.azure.com',  # Replace with your database host
+        'PORT': '5432',       # Replace with your database port
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -193,7 +216,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'kronosdp3123@gmail.com'
-EMAIL_HOST_PASSWORD = 'lpkg oghn jwcq qhgz'
+EMAIL_HOST_PASSWORD = 'bhkt klxb mmfv onus'
 
 CART_SESSION_ID = 'cart'
 
