@@ -15,8 +15,9 @@ from urllib.parse import quote_plus
 import dj_database_url
 from pathlib import Path
 import urllib
-
 import psycopg2
+import dj_database_url
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -33,6 +34,13 @@ SECRET_KEY = 'django-insecure-f9trs3#pg^&uyucvjp^jm(dlb+_2_)sd3w+jv*p)-l!lp+nw@2
 
 # DEBUG = os.environ.get('DEBUG', 'True') == "True"
 DEBUG = True
+
+if not DEBUG:
+    # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
+    # and renames the files with unique names for each version to support long-term caching
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'shop-genius.onrender.com', '.vercel.app', 'shopgenius.azurewebsites.net']
 
@@ -54,6 +62,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -63,6 +72,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'e_shop.urls'
+
 
 TEMPLATES = [
     {
@@ -153,16 +163,23 @@ WSGI_APPLICATION = 'e_shop.wsgi.application'
 #     }
 # } 
 
+# DATABASE_URL="postgresql://ecommerce_fv9o_user:SDvBNJuKkgqBB5K5zpYB5xw4uOCVlZDw@dpg-cq7dihrqf0us738418f0-a/ecommerce_fv9o"
+
+database_url = os.environ.get("DATABASE_URL")
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'E-Commerce',  # Replace with your database name
-        'USER': 'dbadmin',    # Replace with your database username
-        'PASSWORD': 'root@1234',  # Replace with your database password
-        'HOST': 'ecommerce-database2.postgres.database.azure.com',  # Replace with your database host
-        'PORT': '5432',       # Replace with your database port
-    }
+    'default': dj_database_url.parse("postgresql://ecommerce_fv9o_user:SDvBNJuKkgqBB5K5zpYB5xw4uOCVlZDw@dpg-cq7dihrqf0us738418f0-a.oregon-postgres.render.com/ecommerce_fv9o")
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'E-Commerce',  # Replace with your database name
+#         'USER': 'dbadmin',    # Replace with your database username
+#         'PASSWORD': 'root@1234',  # Replace with your database password
+#         'HOST': 'ecommerce-database2.postgres.database.azure.com',  # Replace with your database host
+#         'PORT': '5432',       # Replace with your database port
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
