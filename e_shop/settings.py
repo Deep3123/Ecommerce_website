@@ -36,6 +36,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'shop-genius.onrender.com', '.vercel.app', 'shopgenius.azurewebsites.net']
 
+CSRF_TRUSTED_ORIGINS = ['https://shopgenius.azurewebsites.net', 'https://*.127.0.0.1']
 
 # Application definition
 
