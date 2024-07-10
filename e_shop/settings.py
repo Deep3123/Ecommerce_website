@@ -165,21 +165,21 @@ WSGI_APPLICATION = 'e_shop.wsgi.application'
 
 # DATABASE_URL="postgresql://ecommerce_fv9o_user:SDvBNJuKkgqBB5K5zpYB5xw4uOCVlZDw@dpg-cq7dihrqf0us738418f0-a/ecommerce_fv9o"
 
-database_url = os.environ.get("DATABASE_URL")
-DATABASES = {
-    'default': dj_database_url.parse("postgresql://ecommerce_fv9o_user:SDvBNJuKkgqBB5K5zpYB5xw4uOCVlZDw@dpg-cq7dihrqf0us738418f0-a.oregon-postgres.render.com/ecommerce_fv9o")
-}
-
+# database_url = os.environ.get("DATABASE_URL")
 # DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'E-Commerce',  # Replace with your database name
-#         'USER': 'dbadmin',    # Replace with your database username
-#         'PASSWORD': 'root@1234',  # Replace with your database password
-#         'HOST': 'ecommerce-database2.postgres.database.azure.com',  # Replace with your database host
-#         'PORT': '5432',       # Replace with your database port
-#     }
+#     'default': dj_database_url.parse("postgresql://ecommerce_fv9o_user:SDvBNJuKkgqBB5K5zpYB5xw4uOCVlZDw@dpg-cq7dihrqf0us738418f0-a.oregon-postgres.render.com/ecommerce_fv9o")
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'E-Commerce',  # Replace with your database name
+        'USER': 'dbadmin',    # Replace with your database username
+        'PASSWORD': 'root@1234',  # Replace with your database password
+        'HOST': 'ecommerce-database2.postgres.database.azure.com',  # Replace with your database host
+        'PORT': '5432',       # Replace with your database port
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
