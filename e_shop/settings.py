@@ -166,8 +166,9 @@ WSGI_APPLICATION = 'e_shop.wsgi.application'
 # DATABASE_URL="postgresql://ecommerce_fv9o_user:SDvBNJuKkgqBB5K5zpYB5xw4uOCVlZDw@dpg-cq7dihrqf0us738418f0-a/ecommerce_fv9o"
 
 # database_url = os.environ.get("DATABASE_URL")
+
 DATABASES = {
-    'default': dj_database_url.parse("postgresql://ecommerce_fv9o_user:SDvBNJuKkgqBB5K5zpYB5xw4uOCVlZDw@dpg-cq7dihrqf0us738418f0-a.oregon-postgres.render.com/ecommerce_fv9o")
+    'default': dj_database_url.parse("postgresql://ecommerce_fv9o_user:SDvBNJuKkgqBB5K5zpYB5xw4uOCVlZDw@dpg-cq7dihrqf0us738418f0-a.oregon-postgres.render.com/ecommerce")
 }
 
 # DATABASES = {
